@@ -1,7 +1,7 @@
 package com.lsoftware.testing.service;
 
-import com.lsoftware.testing.model.Client;
-import com.lsoftware.testing.repository.ClientRepository;
+import com.lsoftware.testing.domain.model.Client;
+import com.lsoftware.testing.domain.repository.ClientRepository;
 import com.lsoftware.testing.service.exception.ClientNameAlreadyExistsException;
 import com.lsoftware.testing.service.exception.InvalidClientNameException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,12 +9,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 @Service
-public class ClientService {
+public class CreateClientService {
 
     private ClientRepository clientRepository;
 
     @Autowired
-    public ClientService(ClientRepository clientRepository) {
+    public CreateClientService(ClientRepository clientRepository) {
         this.clientRepository = clientRepository;
     }
 

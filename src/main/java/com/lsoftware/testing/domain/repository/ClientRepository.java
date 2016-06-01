@@ -1,6 +1,6 @@
-package com.lsoftware.testing.repository;
+package com.lsoftware.testing.domain.repository;
 
-import com.lsoftware.testing.model.Client;
+import com.lsoftware.testing.domain.model.Client;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

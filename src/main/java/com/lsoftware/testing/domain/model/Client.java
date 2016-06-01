@@ -1,4 +1,4 @@
-package com.lsoftware.testing.model;
+package com.lsoftware.testing.domain.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

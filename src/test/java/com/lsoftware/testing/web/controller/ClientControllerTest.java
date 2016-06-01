@@ -1,14 +1,15 @@
-package com.lsoftware.testing.web;
+package com.lsoftware.testing.web.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.lsoftware.testing.model.Client;
-import com.lsoftware.testing.service.ClientService;
+import com.lsoftware.testing.domain.model.Client;
+import com.lsoftware.testing.service.CreateClientService;
 import com.lsoftware.testing.service.exception.ClientNameAlreadyExistsException;
 import com.lsoftware.testing.web.to.CreateClientRequest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -22,21 +23,20 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(ClientController.class)
 public class ClientControllerTest {
 
     @Autowired
     MockMvc mockMvc;
 
     @MockBean
-    ClientService clientServiceMock;
+    CreateClientService createClientServiceMock;
 
     @Autowired
     ObjectMapper objectMapper;
 
     @Test
     public void testCreateClientSuccessfully() throws Exception {
-        given(clientServiceMock.createClient("Foo")).willReturn(new Client("Foo"));
+        given(createClientServiceMock.createClient("Foo")).willReturn(new Client("Foo"));
 
         mockMvc.perform(post("/clients")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -56,7 +56,7 @@ public class ClientControllerTest {
 
     @Test
     public void testCreateClientWithExistingName() throws Exception {
-        given(clientServiceMock.createClient("Foo")).willThrow(new ClientNameAlreadyExistsException());
+        given(createClientServiceMock.createClient("Foo")).willThrow(new ClientNameAlreadyExistsException());
 
         mockMvc.perform(post("/clients")
             .contentType(MediaType.APPLICATION_JSON)
