@@ -22,6 +22,8 @@ public class Client extends DomainEntity {
         this.number = UUID.randomUUID().toString();
     }
 
+    Client() {}
+
     public String getName() {
         return name;
     }
